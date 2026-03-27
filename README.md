@@ -6,7 +6,7 @@
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
 ### 🌐 Live Demos
-- **Frontend Web App:** [Live on Netlify](https://Insert-Your-Netlify-Link-Here.netlify.app) _(Please replace with your actual link)_
+- **Frontend Web App:** [Live on Netlify](https://hostel-complaint-system.netlify.app/) 
 - **Backend API Docs:** [Live on Render](https://hostel-backend-ksuw.onrender.com/docs)
 
 A full-stack, secure web application engineered to streamline the process of submitting, tracking, and resolving student complaints within university hostels. 
