@@ -28,9 +28,20 @@
             </div>
         </header>
 
+        <!-- NEW: Portal Selection Section -->
+        <section id="portalSelection" class="card" style="max-width: 500px; margin: 0 auto; text-align: center;">
+            <h2 style="font-size: 1.8rem; margin-bottom: 10px;">Welcome to Hostel Hub</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 30px;">Choose your authorized access port.</p>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <button id="studentPortalBtn" class="btn-primary" style="padding: 1.25rem; font-size: 1.1rem; border-radius: 12px;">🎓 I am a Student</button>
+                <button id="adminPortalBtn" class="btn-secondary" style="padding: 1.25rem; font-size: 1.1rem; border-radius: 12px; border: 2px solid var(--border-color);">👔 I am a Warden (Admin)</button>
+            </div>
+        </section>
+
         <!-- NEW: Login / Register Section -->
-        <section id="authSection" class="card" style="max-width: 400px; margin: 0 auto;">
-            <h2 style="text-align: center; margin-bottom: 20px;">Secure Login Area</h2>
+        <section id="authSection" class="card" style="max-width: 400px; margin: 0 auto; display: none;">
+            <button id="backToPortalBtn" class="btn-secondary" style="margin-bottom: 20px; font-size: 0.8rem;">← Back to Portals</button>
+            <h2 id="authTitle" style="text-align: center; margin-bottom: 20px;">Secure Login Area</h2>
             <form id="authForm">
                 <div class="form-group">
                     <label for="authUsername">Username</label>
@@ -50,8 +61,8 @@
 
         <!-- Main Content (Hidden until Logged In!) -->
         <main class="main-content" id="mainContent" style="display: none;">
-            <!-- Form Section (Left Side) -->
-            <section class="form-section card">
+            <!-- Form Section (Left Side - Hidden for Admins) -->
+            <section class="form-section card" id="studentFormSection">
                 <h2>Raise a Complaint</h2>
                 <form id="complaintForm">
                     <div class="form-group">

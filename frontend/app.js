@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:8080";
+const API_BASE_URL = "https://hostel-backend-ksuw.onrender.com";
 
 // --- DOM Elements ---
 const form = document.getElementById("complaintForm");
@@ -8,8 +8,16 @@ const formMessage = document.getElementById("formMessage");
 const submitBtn = document.getElementById("submitBtn");
 
 // --- Auth Elements ---
+const portalSelection = document.getElementById("portalSelection");
+const studentPortalBtn = document.getElementById("studentPortalBtn");
+const adminPortalBtn = document.getElementById("adminPortalBtn");
+const backToPortalBtn = document.getElementById("backToPortalBtn");
+const authTitle = document.getElementById("authTitle");
+
 const authSection = document.getElementById("authSection");
 const mainContent = document.getElementById("mainContent");
+const studentFormSection = document.getElementById("studentFormSection");
+
 const loginBtn = document.getElementById("loginBtn");
 const registerBtn = document.getElementById("registerBtn");
 const logoutBtn = document.getElementById("logoutBtn");
@@ -28,14 +36,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-function showAuthScreen() {
+// Portal Buttons
+studentPortalBtn.addEventListener("click", () => {
+    portalSelection.style.display = "none";
     authSection.style.display = "block";
+    authTitle.textContent = "Student Login";
+    registerBtn.style.display = "block"; 
+});
+
+adminPortalBtn.addEventListener("click", () => {
+    portalSelection.style.display = "none";
+    authSection.style.display = "block";
+    authTitle.textContent = "Warden Login Area";
+    registerBtn.style.display = "none"; // Hide register button for Wardens
+});
+
+backToPortalBtn.addEventListener("click", showAuthScreen);
+
+function showAuthScreen() {
+    portalSelection.style.display = "block";
+    authSection.style.display = "none";
     mainContent.style.display = "none";
     logoutBtn.style.display = "none";
-    loggedInUser.textContent = "🔒 Security Locked: Please Login or Register";
+    loggedInUser.textContent = "🔒 Security Locked: Select Portal";
 }
 
 function showMainApp() {
+    portalSelection.style.display = "none";
     authSection.style.display = "none";
     mainContent.style.display = "grid";
     logoutBtn.style.display = "inline-flex";
@@ -50,7 +77,18 @@ function showMainApp() {
         } catch (e) {}
     }
     
-    const roleStr = isAdmin ? '(Admin)' : '(Student)';
+    // --- DUAL DASHBOARD ROUTING ---
+    if (isAdmin) {
+        // ADMIN DASHBOARD
+        studentFormSection.style.display = "none";
+        mainContent.style.gridTemplateColumns = "1fr"; // Full width
+    } else {
+        // STUDENT DASHBOARD
+        studentFormSection.style.display = "block";
+        mainContent.style.gridTemplateColumns = ""; // Use CSS default
+    }
+
+    const roleStr = isAdmin ? '(Admin Warden)' : '(Student)';
     loggedInUser.textContent = `✅ Security Cleared! Welcome to the Hub, ${username} ${roleStr}.`;
     fetchComplaints(); 
 }
